@@ -22,4 +22,10 @@ describe('Testing the repository', () => {
 		repository.delete(666);
 		expect(repository.users.length).to.equal(1);
 	});
+
+	it('should update element correctly', () => {
+		repository.add({id:42, name: 'Jon', createdAt: new Date()});
+		repository.update({id:42, name:'Juan', createdAt: new Date()});
+		expect(repository.find(42).name).to.equal('Juan');
+	});
 });

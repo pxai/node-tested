@@ -15,8 +15,13 @@ class UserRepository {
 		this._users.push(user);
 	}	
 
-	delete(id){
+	delete(id) {
 		this._users = this._users.filter(a=>a.id!==id);
+	}
+
+	update(user) {
+		this.delete(user.id);	
+		this._users.push(user);
 	}
 }
 
