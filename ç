@@ -31,8 +31,7 @@ describe('Testing basic routes', () => {
 		};
 
 		let repository = {
-			add: sinon.spy(),
-			rand: sinon.spy()
+			add: sinon.spy()
 		};
 
 		addUser(req, res, repository);
@@ -42,7 +41,7 @@ describe('Testing basic routes', () => {
 	});
 
 	it('Should add new element to the repository', (done) => {
-		let repository = { add : function() {}, rand: function(){} }; 
+		let repository = { add : function() {} }; 
 		let req = {
 			params : { name: 'Mike' }
 		};
@@ -60,11 +59,10 @@ describe('Testing basic routes', () => {
 		done();
 	});
 
-	it('should send the created user', (done)=>{
-		let user = {id:42,name:'JJ',createdAt:new Date()}; 
-		let repository = { add: function(){}, rand: function(){}};
+	it('should send the created user', ()=>{
+		let user = {id:0,name:'JJ',createdAt:new Date()}; 
+		let repository = { add: function(){} };
 		let repositoryStub = sinon.stub(repository, "add").returns(user);
-		repositoryStub = sinon.stub(repository, "rand").returns(42);
 		let req = {
 		  params: { name: 'JJ' }
 		};
@@ -74,10 +72,9 @@ describe('Testing basic routes', () => {
 
 		const mock = sinon.mock(res);
 		mock.expects("send").once().withExactArgs(user);
-		addUser(req, res, repository);
+		addUser(req, res, repositoryStub);
 		expect(repositoryStub.calledOnce).to.be.true;
 		
 		mock.verify();
-		done();
 	});
 });

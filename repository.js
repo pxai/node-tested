@@ -23,6 +23,10 @@ class UserRepository {
 		this.delete(user.id);	
 		this._users.push(user);
 	}
+
+	rand(){
+		return Math.round(Math.random()*1000000);
+	}
 }
 
 module.exports =  new UserRepository(); 

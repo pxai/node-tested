@@ -28,4 +28,8 @@ describe('Testing the repository', () => {
 		repository.update({id:42, name:'Juan', createdAt: new Date()});
 		expect(repository.find(42).name).to.equal('Juan');
 	});
+
+	it('should generate random numbers', () => {
+		expect(repository.rand()).to.be.above(-1).and.below(9999999);
+	});
 });
