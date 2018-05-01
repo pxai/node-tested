@@ -8,4 +8,9 @@ const addUser = (req, res, repository) => {
 	res.send(user);
 };
 
-module.exports = { addUser };
+const getUser = (req, res, repository) => {
+	const user = repository.find(req.params.id);
+	res.send(user);
+};
+
+module.exports = { addUser, getUser };
